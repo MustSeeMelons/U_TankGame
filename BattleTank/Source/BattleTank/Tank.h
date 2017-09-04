@@ -12,15 +12,23 @@ class UTankBarrel;
 
 class UTankTurret;
 
+class AProjectile;
+
+class UTankBarrel;
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn {
 	GENERATED_BODY()
-
+private:
+	UTankBarrel* Barrel = nullptr;
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 public:
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 4000;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	ATank();
 
