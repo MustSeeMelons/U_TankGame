@@ -9,14 +9,12 @@
 class ATank;
 
 UCLASS()
-class BATTLETANK_API ATankAIController : public AAIController
-{
+class BATTLETANK_API ATankAIController : public AAIController {
 	GENERATED_BODY()
 private:
 	ATank* PlayerTank;
 public:
-	ATank* GetControlledTank() const;
+	float AcceptanceRadius = 3000;
 	virtual void BeginPlay() override; // already virtual in parent, for readability
-	ATank* GetPlayerTank() const;
 	virtual void Tick(float DeltaTime) override;
 };

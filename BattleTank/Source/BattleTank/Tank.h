@@ -8,6 +8,8 @@
 
 class UTankAimingComponent;
 
+class UTankMovementComponent;
+
 class UTankBarrel;
 
 class UTankTurret;
@@ -21,13 +23,19 @@ class BATTLETANK_API ATank : public APawn {
 	GENERATED_BODY()
 private:
 	UTankBarrel* Barrel = nullptr;
+	
+	double LastFireTime = 0;
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
+	//UPROPERTY(BlueprintReadOnly) // So that blueprint has access to the component of the tank
 public:
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float ReloadTimeInSeconds = 3;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 		float LaunchSpeed = 4000;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup) // Can edit only the parent object, archetype
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	ATank();

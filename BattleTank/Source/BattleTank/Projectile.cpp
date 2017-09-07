@@ -2,7 +2,6 @@
 
 #include "Projectile.h"
 #include "UObject/UObjectGlobals.h"
-#include "Engine/World.h"
 
 // Sets default values
 AProjectile::AProjectile() {
@@ -25,10 +24,7 @@ void AProjectile::Tick(float DeltaTime) {
 }
 
 void AProjectile::LaunchProjectile(float Speed) {
-
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
 	ProjectileMovement->Activate();
-	auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("%f, Projectile fires at %f!"), Time, Speed);
 }
 
